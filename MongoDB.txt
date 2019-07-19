@@ -1,0 +1,121 @@
+//Starting the mongoDB shell
+mongo
+
+//Creating the Users
+db.createUser({
+   user: "praveen",
+   pwd: "1234",
+   role: ["readWrite","dbAdmin"]
+});
+
+//Shows the all Database
+> show dbs
+
+//Change to particular Database
+> use mycustomers
+
+//Creating the collection for the Database
+db.createCollection('details');
+
+//Shows all the collection
+> show collections
+
+//Inserting the fields into the collections
+> db.customers.insert({name: "praveen", age: 21});
+
+//Shows all the fields in the collection 
+> db.customers.find();
+
+//Shows all the fields in the collections in the well defined manner
+> db.customers.find().pretty();
+
+//Updating the one full field in a element
+> db.customers.update({name:"praveen"},{name:"Praveen", age:21, city:"coimbatore"});
+
+//Updating the specific field in a element
+> db.customers.update({name:"praveen"},{$set:{city:"bangalore"}});
+
+//Updating the specific field by incrementing the value
+> db.customers.update({name:"sudhakar"},{$inc:{age:4}});
+
+//Removing the particular field from the element
+> db.customers.update({name:"ram"},{$unset:{country}});
+
+//Updating the field in element, if not available it creates its own
+> db.customers.update({name:"sree"},{name:"sree", age: 24, city:"calicut"},{upsert:true});
+
+//Renaming the particular field in the document
+> db.customers.update({name:"Praveen"}, {$rename: {"city":"district"}});
+
+//Removing the full entire element from the document
+> db.customers.remove({name:"aswin"});
+
+//Inserting the fields into the collections
+db.details.insert([
+... {
+... ... name: "sankar",
+... ... age: 20,
+... ... address: {
+... ...           street: "subaiah st",
+... ...           city: "coimbatore"
+... ...          },
+... ... hobbies: ["games","eating"]
+... ... },
+... ... {
+... ... name: "sivaprem",
+... ... ... age: 30,
+... ... ... address: {
+... ... ...           street: "somthing st",
+... ... ...           city: "pollachi"
+... ... ...          },
+... ... ... hobbies: ["gym","swim"]
+... ... },
+... ... {
+... ... ... name: "surya",
+... ... ... age: 22,
+... ... ... address: {
+... ... ...           street: "ramasamy st",
+... ... ...           city: "salem"
+... ... ...          },
+... ... ... hobbies: ["movies","phone"]
+... ... },
+... ... {
+... ... ... name: "raja",
+... ... ... age: 24,
+... ... ... address: {
+... ... ...           street: "udumalpet st",
+... ... ...           city: "hyderabad"
+... ... ...          },
+... ... ... hobbies: ["movies","travel"]
+... ... }
+... ]);
+
+//Finding the particular field in all elements
+db.details.find({hobbies: "movies"}).pretty();
+db.details.find({name: "raja"}).pretty();
+
+//Finding the age greater than 21 & age lesser than 21
+db.details.find({age:{$lt:21}});
+db.details.find({age:{$gt:22}});
+
+//Finding the data inside the object for the element
+> db.details.find({"address.city":"coimbatore"});
+
+//Sorting the name in ascending order
+> db.details.find().sort({name:1}).pretty();
+
+//Sorting the name in decending order
+> db.details.find().sort({name:-1}).pretty();
+
+//Counting the number of elements
+> db.details.find().count();
+
+//Limiting the number of elements in the collections
+> db.details.find().limit(3);
+
+> db.details.find().sort({name:1}).limit(2).pretty();
+
+//Using forEach()
+> db.details.forEach(function(doc){
+     print("List is " + doc.name);
+  })

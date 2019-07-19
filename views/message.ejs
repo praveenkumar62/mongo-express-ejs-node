@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Add Articles</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+
+            <div id="messages">
+                <% Object.keys(messages).forEach(function (type) { %>
+                    <div class="alert alert-success <%= type %>">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <% messages[type].forEach(function (message) { %>
+                            <strong><%= message %></strong>
+                        <% }) %>
+                    </div>
+                <% }) %>
+            </div>
+
+        </div>
+    </body>
+
+</html>
+
+
+
+
+

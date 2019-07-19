@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Particular Data</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Complete Data</h1>
+
+        <hr/>
+
+        <a href="/articles" class="btn btn-info" style="float: right;">View Articles</a>
+        <h2>The Title is <%= particularData.title %></h2>
+        <h4>It was done by <%= particularData.author %></h4>
+        <p><%= particularData.content %></p>
+
+        <hr/>
+
+         <a href="/articles/edit/<%=particularData._id%>" class="btn btn-default">Update</a>
+         <a href="/articles/delete/<%=particularData._id%>" class="btn btn-danger">Delete</a>
+         <%# <a href="#" class="btn btn-danger" id="delBtn" data-id="   particularData._id   ">Delete</button> %>
+    </div>
+</body>
+</html>
